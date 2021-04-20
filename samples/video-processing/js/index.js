@@ -97,7 +97,9 @@ function deformate(src) {
             }
 		}
 	}
+  console.log(mapY)
 	cv.remap(src,dstC4,mapX,mapY,cv.INTER_LINEAR)
+  console.log("хуй")
   return dstC4;
 }
 
