@@ -62,6 +62,44 @@ function passThrough(src) {
   return src;
 }
 
+function deformate(src) {
+	right_eye = [215,105]
+	radius = 30
+	power = 2
+
+	let mapY = cv.Mat.ones(height, width, cv.CV_8U)
+	let mapX = cv.Mat.ones(height, width, cv.CV_8U)
+
+	for (let i = 0; i < height; i++) {
+		for (let j = 0; j < width; j++) {
+			mapY.ucharPtr(i, j) = i
+			mapX.ucharPtr(i, j) = j
+		}
+	}
+
+	for (let i = (-1) * radius; i < radius; i++) {
+		for (let j = (-1) * radius; j < radius; j++) {
+			if ((i * i + j * j) > (radius * radius)) {
+            	continue
+			}
+            if (i > 0) {
+            	mapY.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[1] + (i/radius)*(i/radius) * radius
+            }
+            if (i < 0) {
+            	mapY.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[1] - (-i/radius)*(-i/radius) * radius 
+            }
+            if (j > 0) {
+            	mapX.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[0] + (j/radius)*(j/radius) * radius
+            }
+            if (j < 0) {
+            	mapX.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[0] - (-j/radius)*(-j/radius) * radius
+            }
+		}
+	}
+	dstC4=cv.remap(src,mapX,mapY,cv.INTER_LINEAR)
+  return dstC4;
+}
+
 function gray(src) {
   cv.cvtColor(src, dstC1, cv.COLOR_RGBA2GRAY);
   return dstC1;
@@ -273,7 +311,7 @@ function processVideo() {
     case 'adaptiveThreshold': result = adaptiveThreshold(src); break;
     case 'gaussianBlur': result = gaussianBlur(src); break;
     case 'bilateralFilter': result = bilateralFilter(src); break;
-    case 'medianBlur': result = medianBlur(src); break;
+    case 'medianBlur': result = deformate(src); break;
     case 'sobel': result = sobel(src); break;
     case 'scharr': result = scharr(src); break;
     case 'laplacian': result = laplacian(src); break;
