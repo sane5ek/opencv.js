@@ -84,7 +84,6 @@ function deformate(src) {
 			}
             if (i > 0) {
             	mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
-              console.log(mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0])
             }
             if (i < 0) {
             	mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
