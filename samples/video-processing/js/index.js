@@ -67,8 +67,8 @@ function deformate(src) {
 	radius = 30
 	power = 2
 
-	let mapY = cv.Mat.ones(height, width, cv.CV_16U)
-	let mapX = cv.Mat.ones(height, width, cv.CV_16S)
+	let mapY = cv.Mat.zeros(height, width, cv.CV_16U)
+	let mapX = cv.Mat.zeros(height, width, cv.CV_16S)
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
