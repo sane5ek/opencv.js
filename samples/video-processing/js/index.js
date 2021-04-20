@@ -72,8 +72,8 @@ function deformate(src) {
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
-			mapY.ucharPtr(i, j) = i
-			mapX.ucharPtr(i, j) = j
+			mapY.at(i, j) = i
+			mapX.at(i, j) = j
 		}
 	}
 
@@ -83,16 +83,16 @@ function deformate(src) {
             	continue
 			}
             if (i > 0) {
-            	mapY.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[1] + (i/radius)*(i/radius) * radius
+            	mapY.at(right_eye[1] + i, right_eye[0] + j) = right_eye[1] + (i/radius)*(i/radius) * radius
             }
             if (i < 0) {
-            	mapY.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[1] - (-i/radius)*(-i/radius) * radius 
+            	mapY.at(right_eye[1] + i, right_eye[0] + j) = right_eye[1] - (-i/radius)*(-i/radius) * radius 
             }
             if (j > 0) {
-            	mapX.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[0] + (j/radius)*(j/radius) * radius
+            	mapX.at(right_eye[1] + i, right_eye[0] + j) = right_eye[0] + (j/radius)*(j/radius) * radius
             }
             if (j < 0) {
-            	mapX.ucharPtr(right_eye[1] + i, right_eye[0] + j) = right_eye[0] - (-j/radius)*(-j/radius) * radius
+            	mapX.at(right_eye[1] + i, right_eye[0] + j) = right_eye[0] - (-j/radius)*(-j/radius) * radius
             }
 		}
 	}
