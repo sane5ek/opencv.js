@@ -96,6 +96,8 @@ function deformate(src) {
             }
 		}
 	}
+  console.log(mapX)
+  console.log(mapY)
 	dstC4=cv.remap(src,mapX,mapY,cv.INTER_LINEAR)
   return dstC4;
 }
