@@ -84,14 +84,13 @@ function deformate(src) {
 			}
             if (i > 0) {
             	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
-              console.log(right_eye[1] + (i/radius)*(i/radius) * radius)
+              console.log(right_eye[1] + i, right_eye[0] + j)
             }
             if (i < 0) {
             	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
             }
             if (j > 0) {
             	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
-              console.log(right_eye[0] + (j/radius)*(j/radius) * radius)
             }
             if (j < 0) {
             	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] - (-j/radius)*(-j/radius) * radius
