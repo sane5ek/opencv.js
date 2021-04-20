@@ -67,13 +67,13 @@ function deformate(src) {
 	radius = 30
 	power = 2
 
-	let mapY = cv.Mat.ones(height, width, cv.CV_8U)
-	let mapX = cv.Mat.ones(height, width, cv.CV_8U)
+	let mapY = cv.Mat.ones(height, width, cv.CV_16S)
+	let mapX = cv.Mat.ones(height, width, cv.CV_16S)
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
-			mapY.ucharAt(i, j)[0] = i
-			mapX.ucharAt(i, j)[0] = j
+			mapY.shortAt(i, j)[0] = i
+			mapX.shortAt(i, j)[0] = j
 		}
 	}
 
@@ -83,16 +83,16 @@ function deformate(src) {
             	continue
 			}
             if (i > 0) {
-            	mapY.ucharAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
+            	mapY.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
             }
             if (i < 0) {
-            	mapY.ucharAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
+            	mapY.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
             }
             if (j > 0) {
-            	mapX.ucharAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
+            	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
             }
             if (j < 0) {
-            	mapX.ucharAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] - (-j/radius)*(-j/radius) * radius
+            	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] - (-j/radius)*(-j/radius) * radius
             }
 		}
 	}
