@@ -84,7 +84,7 @@ function deformate(src) {
 			}
             if (i > 0) {
             	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
-              console.log(right_eye[1] + i, right_eye[0] + j)
+              console.log(mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0])
             }
             if (i < 0) {
             	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
@@ -97,9 +97,7 @@ function deformate(src) {
             }
 		}
 	}
-  console.log(mapY)
 	cv.remap(src,dstC4,mapX,mapY,cv.INTER_LINEAR)
-  console.log("хуй")
   return dstC4;
 }
 
