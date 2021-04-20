@@ -67,12 +67,12 @@ function deformate(src) {
 	radius = 30
 	power = 2
 
-	let mapY = cv.Mat.ones(height, width, cv.CV_16S)
+	let mapY = cv.Mat.ones(height, width, cv.CV_16U)
 	let mapX = cv.Mat.ones(height, width, cv.CV_16S)
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
-			mapY.shortAt(i, j)[0] = i
+			mapY.ushortAt(i, j)[0] = i
 			mapX.shortAt(i, j)[0] = j
 		}
 	}
@@ -83,10 +83,10 @@ function deformate(src) {
             	continue
 			}
             if (i > 0) {
-            	mapY.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
+            	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
             }
             if (i < 0) {
-            	mapY.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
+            	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
             }
             if (j > 0) {
             	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
