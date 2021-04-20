@@ -67,13 +67,13 @@ function deformate(src) {
 	radius = 30
 	power = 2
 
-	let mapY = cv.Mat.zeros(height, width, cv.CV_16U)
-	let mapX = cv.Mat.zeros(height, width, cv.CV_16S)
+	let mapY = cv.Mat.zeros(height, width, cv.CV_32F)
+	let mapX = cv.Mat.zeros(height, width, cv.CV_32F)
 
 	for (let i = 0; i < height; i++) {
 		for (let j = 0; j < width; j++) {
-			mapY.ushortAt(i, j)[0] = i
-			mapX.shortAt(i, j)[0] = j
+			mapY.floatPtr(i, j)[0] = i
+			mapX.floatPtr(i, j)[0] = j
 		}
 	}
 
@@ -83,17 +83,17 @@ function deformate(src) {
             	continue
 			}
             if (i > 0) {
-            	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
-              console.log(mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0])
+            	mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] + (i/radius)*(i/radius) * radius
+              console.log(mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0])
             }
             if (i < 0) {
-            	mapY.ushortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
+            	mapY.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[1] - (-i/radius)*(-i/radius) * radius 
             }
             if (j > 0) {
-            	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
+            	mapX.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] + (j/radius)*(j/radius) * radius
             }
             if (j < 0) {
-            	mapX.shortAt(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] - (-j/radius)*(-j/radius) * radius
+            	mapX.floatPtr(right_eye[1] + i, right_eye[0] + j)[0] = right_eye[0] - (-j/radius)*(-j/radius) * radius
             }
 		}
 	}
